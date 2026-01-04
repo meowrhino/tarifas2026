@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tarifas 2026 — calculadora de factura</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>tarifas 2026</h1>
+      <p>calculadora rápida para ver <strong>IVA</strong> y <strong>retención IRPF</strong> (si aplica).</p>
+    </div>
+
+    <div class="controls-panel">
+      <div class="control-card">
+        <div class="control-header">
+          <h4>datos de la factura</h4>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="clientType">tipo de cliente</label>
+            <select id="clientType">
+              <option value="pro">empresa / autónomo (con retención IRPF)</option>
+              <option value="part">particular (sin retención IRPF)</option>
+            </select>
+            <p class="control-help">el IRPF es una <em>retención</em> que ingresa el pagador si puede retener.</p>
+          </div>
+
+          <div class="field">
+            <label for="baseAmount">base imponible (€)</label>
+            <input id="baseAmount" type="number" inputmode="decimal" step="0.01" min="0" value="425" />
+          </div>
+
+          <div class="field">
+            <label for="extraAmount">extras (€)</label>
+            <input id="extraAmount" type="number" inputmode="decimal" step="0.01" min="0" value="0" />
+            <p class="control-help">por ejemplo: materiales, licencias, desplazamientos, etc.</p>
+          </div>
+
+          <div class="field">
+            <label for="ivaRate">IVA (%)</label>
+            <input id="ivaRate" type="number" inputmode="decimal" step="0.01" min="0" value="21" />
+          </div>
+
+          <div class="field">
+            <label for="irpfRate">IRPF (%)</label>
+            <input id="irpfRate" type="number" inputmode="decimal" step="0.01" min="0" value="15" />
+            <p class="control-help">si eres nueva autónoma puede ser 7% en algunos casos, pero depende.</p>
+          </div>
+
+          <div class="actions">
+            <button class="btn-secondary" id="exampleA">ejemplo: 425€</button>
+            <button class="btn-secondary" id="exampleB">ejemplo: 425€ + 150€</button>
+            <button class="btn-primary" id="resetBtn">reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-card">
+        <div class="control-header">
+          <h4>resultado</h4>
+          <span class="pill" id="summaryPill">—</span>
+        </div>
+
+        <div class="invoice-box">
+          <div class="row">
+            <span>subtotal (base + extras)</span>
+            <strong id="subtotalOut">—</strong>
+          </div>
+
+          <div class="row" id="irpfRow">
+            <span>retención IRPF</span>
+            <strong id="irpfOut">—</strong>
+          </div>
+
+          <div class="row">
+            <span>IVA</span>
+            <strong id="ivaOut">—</strong>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="row total">
+            <span>total a cobrar</span>
+            <strong id="totalOut">—</strong>
+          </div>
+
+          <div class="mini-note" id="noteOut"></div>
+        </div>
+
+        <div class="tips">
+          <div class="tip">
+            <span class="badge">A</span>
+            <div>
+              <strong>empresa/autónomo:</strong> el cliente puede retener IRPF y lo ingresa en Hacienda (tú cobras menos ahora).
+            </div>
+          </div>
+          <div class="tip">
+            <span class="badge">B</span>
+            <div>
+              <strong>particular:</strong> normalmente no hay retención IRPF porque el particular no presenta modelos de retenciones.
+            </div>
+          </div>
+          <p class="control-help">esto es orientativo: el IVA/IRPF puede variar según actividad, exenciones y tipo de operación.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="branding-badge">
+      <a href="https://meowrhino.studio" target="_blank" rel="noopener noreferrer">meowrhino.studio</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
